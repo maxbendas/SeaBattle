@@ -43,7 +43,7 @@ const play = {
     hit.textContent = this.hit;
     dead.textContent = this.dead;
   }
-}
+};
 
 const show = {
   hit(elem) {
@@ -58,11 +58,11 @@ const show = {
   changeClass(elem, value){
     elem.className = value;
   }
-}
+};
 
 const fire = (event) => {
   const target = event.target;
-  if (target.classList.length !== 0 || target.tagName !== 'TD') return;
+  if (target.classList.length !== 0 || target.tagName !== 'TD' || !game.shipsCount) return;
   show.miss(target);
   play.updateData = 'shot';
 
@@ -86,7 +86,7 @@ const fire = (event) => {
           header.textContent = 'Game Over';
           header.style.color = 'red';
 
-          if (play.shot < play.record || play.record === 0) {
+          if (play.shot < play.record || play.record === 0 ) {
             localStorage.setItem('seaBattleRecord', play.shot);
             play.record = play.shot;
             play.render();
@@ -98,7 +98,7 @@ const fire = (event) => {
 
   }
 
-}
+};
 
 
 const init = () => {
@@ -107,8 +107,13 @@ const init = () => {
 
   again.addEventListener('click', ()=> {
   location.reload();
+  });
+
+  record.addEventListener('dblclick', ()=> {
+    play.record=0;
+    play.render();
   })
-}
+};
 
 init();
 
