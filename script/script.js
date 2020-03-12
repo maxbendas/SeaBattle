@@ -1,5 +1,7 @@
 'use strict';
 
+const arrX = ['A','B','C','D','E','F','G','H','I','J']
+
 const record = document.getElementById('record');
 const shot = document.getElementById('shot');
 const hit = document.getElementById('hit');
@@ -129,6 +131,7 @@ const fire = (event) => {
     if (index >= 0) {
       show.hit(target);
       play.updateData = 'hit';
+      console.log(`${arrX[target.id[0]] + (+target.id[1] + 1)} ПОПАЛ`);
       ship.hit[index] = 'x';
       const life = ship.hit.indexOf('');
       if (life < 0) {
@@ -151,6 +154,9 @@ const fire = (event) => {
         }
       }
     }
+  }
+  if (target.classList.contains('miss')) {
+    console.log(`${arrX[target.id[0]] + (+target.id[1] + 1)} МИМО`);
   }
 };
 
